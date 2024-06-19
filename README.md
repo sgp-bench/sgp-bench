@@ -1,4 +1,11 @@
-## Hi there 👋
+# SGP-Bench
+
+Here is the official evaluation code of SGP-Bench (Paper: Can Large Language Models Understand Symbolic Graphics Programs?)
+
+Code coming soon!
+
+## Acknowledgements
+This project is based on the open-source repository available at https://github.com/openai/simple-evals. We are thankful to OpenAI for providing the base implementation.
 
 <!--
 **sgp-bench/sgp-bench** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
