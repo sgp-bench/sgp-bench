@@ -1,0 +1,9 @@
+name: sgp-bench
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+    - vllm==0.5.3.post1
+    - evals==3.0.1.post1
