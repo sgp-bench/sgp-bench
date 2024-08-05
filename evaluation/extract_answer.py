@@ -5,8 +5,6 @@ import argparse
 
 from tqdm import tqdm
 import numpy as np
-import sys
-sys.path.append('../')
 from utilities import get_chat_response, get_chat_response_gpt, read_json
 
 # load demo prompt
@@ -58,9 +56,7 @@ if __name__ == '__main__':
     parser.add_argument('--response_label', type=str, default='response', help='response label for the input file')
     # model
     parser.add_argument('--llm_engine', type=str, default='meta-llama/Meta-Llama-3.1-8B-Instruct', help='llm engine')
-    # parser.add_argument('--llm_engine', type=str, default='microsoft/Phi-3-mini-4k-instruct', help='llm engine')
-    # parser.add_argument('--llm_engine', type=str, default='gpt-4o-mini-2024-07-18', help='llm engine')
-    parser.add_argument('--base_url', type=str, default='http://172.22.2.134:8000/v1', help='llm temperature')
+    parser.add_argument('--base_url', type=str, default='http://localhost:8000/v1', help='llm temperature')
     parser.add_argument('--api_key', type=str, default='token-abc123', help='open-sourced llm api key')
     parser.add_argument('--number', type=int, default=-1, help='number of problems to run')
     parser.add_argument('--quick_extract', action='store_true', help='use rules to extract answer for some problems')

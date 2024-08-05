@@ -20,7 +20,6 @@ from tqdm import tqdm
 from transformers import AutoModelForCausalLM, AutoTokenizer, TrainingArguments, logging, set_seed
 
 from trl import SFTTrainer, SFTConfig
-from trl.trainer import ConstantLengthDataset
 
 
 def get_args():
@@ -52,30 +51,12 @@ def get_args():
     parser.add_argument("--num_workers", type=int, default=None)
     parser.add_argument("--output_dir", type=str, default="./checkpoints")
     parser.add_argument("--log_freq", default=1, type=int)
-    parser.add_argument("--eval_freq", default=1000000000, type=int)
+    parser.add_argument("--eval_freq", default=10000, type=int)
     parser.add_argument("--save_strategy", type=str, default="no")
 
+    parser.add_argument("--lora_r", type=int, default=32)
+
     return parser.parse_args()
-
-
-def chars_token_ratio(dataset, tokenizer, nb_examples=400):
-    """
-    Estimate the average number of characters per token in the dataset.
-    """
-    total_characters, total_tokens = 0, 0
-    for _, example in tqdm(zip(range(nb_examples), iter(dataset)), total=nb_examples):
-        text = prepare_sample_text(example)
-        total_characters += len(text)
-        if tokenizer.is_fast:
-            total_tokens += len(tokenizer(text).tokens())
-            if len(tokenizer(text).tokens()) > 4096:
-                print(f"token lenght: {len(tokenizer(text).tokens())}")
-        else:
-            total_tokens += len(tokenizer.tokenize(text))
-            if len(tokenizer.tokenize(text)) > 4096:
-                print(f"token lenght: {len(tokenizer.tokenize(text))}")
-
-    return total_characters / total_tokens
 
 
 def print_trainable_parameters(model):
@@ -91,22 +72,6 @@ def print_trainable_parameters(model):
     print(
         f"trainable params: {trainable_params} || all params: {all_param} || trainable%: {100 * trainable_params / all_param}"
     )
-
-
-def prepare_sample_text(example):
-    """Prepare the text from a sample of the dataset."""
-    text = f"""Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
-
-    ### Instruction:
-    {example['instruction']}
-
-    ### Input:
-    {example['input']}
-
-    ### Response:
-    {example['output']}""" + EOS_TOKEN
-
-    return text
 
 
 def create_datasets(tokenizer, args):
@@ -145,7 +110,7 @@ def run_training(args, train_data):
     print("Loading the model")
 
     lora_config = LoraConfig(
-        r=16,
+        r=args.lora_r,
         lora_alpha=32,
         lora_dropout=0.05,
         bias="none",
@@ -161,7 +126,6 @@ def run_training(args, train_data):
         dataloader_drop_last=True,
         eval_strategy="steps",
         num_train_epochs=args.num_train_epochs,
-        # max_steps=10,
         eval_steps=args.eval_freq,
         save_strategy=args.save_strategy,
         logging_steps=args.log_freq,
@@ -176,7 +140,7 @@ def run_training(args, train_data):
         bf16=args.bf16,
         weight_decay=args.weight_decay,
         run_name="llama-7b-finetuned",
-        # report_to="wandb",
+        report_to="wandb",
         ddp_find_unused_parameters=False,
         disable_tqdm=False,
         max_seq_length=args.seq_length,
@@ -185,9 +149,6 @@ def run_training(args, train_data):
 
     model = AutoModelForCausalLM.from_pretrained(
         args.model_path, 
-        # device_map="auto",
-        # load_in_8bit=True, 
-        # device_map={"": Accelerator().process_index}
     )
 
     trainer = SFTTrainer(
@@ -213,7 +174,7 @@ if __name__ == "__main__":
 
     set_seed(args.seed)
     run_name = args.data_file.split(".")[0]
-    args.output_dir = os.path.join(args.output_dir, "lora-llama3-8B", run_name)
+    args.output_dir = os.path.join(args.output_dir, f"lora-llama3.1-8B-{args.lora_r}", run_name)
     os.makedirs(args.output_dir, exist_ok=True)
     print(f"Saving checkpoints in {args.output_dir}")
 
