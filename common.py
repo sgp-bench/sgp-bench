@@ -20,6 +20,18 @@ C) {C}
 D) {D}
 """.strip()
 
+# ABLATION PROMPT
+QUERY_TEMPLATE_MULTICHOICE_ABLATION = """
+Answer the following multiple choice question. The last line of your response should be of the following format: 'Answer: $LETTER' (without quotes) where LETTER is one of ABCD. Think step by step before answering.
+
+{Question}
+
+A) {A}
+B) {B}
+C) {C}
+D) {D}
+""".strip()
+
 ANSWER_PATTERN_MULTICHOICE = r"(?i)Answer\s*:\s*([A-D])"
 ANSWER_PATTERN = r"(?i)Answer\s*:\s*([^\n]+)"
 

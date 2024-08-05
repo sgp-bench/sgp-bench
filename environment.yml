@@ -7,3 +7,4 @@ dependencies:
   - pip:
     - vllm==0.5.3.post1
     - evals==3.0.1.post1
+    - beautifulsoup4==4.12.3

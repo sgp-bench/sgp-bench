@@ -127,7 +127,15 @@ def main(args):
                     base_url=args.base_url
                 ),
             }
-
+        elif "aya" in args.api:
+            samplers = {
+                args.api: OpenChatCompletionSampler(
+                    model=args.model,
+                    system_message=OPEN_SYSTEM_MESSAGE_API,
+                    max_tokens=args.max_tokens,
+                    base_url=args.base_url
+                ),
+            }
         else:
             samplers = {
                 args.api: OpenChatCompletionSampler(
@@ -201,6 +209,7 @@ def main(args):
             columns = ['sampler_name'] + [('metric', key) for key in filtered_data.keys()]
             df.columns = columns
             df.set_index('sampler_name', inplace=True)
+            print("\nResults: ")
             print(df.to_markdown())
 
             result_filename = os.path.join(result_dir, f"{file_stem}{debug_suffix}.json")
@@ -224,8 +233,6 @@ def main(args):
     merge_metrics_df = pd.DataFrame(merge_metrics).pivot(
         index=["sampler_name"], columns="eval_name"
     )
-    # print("\nAll results: ")
-    # print(merge_metrics_df.to_markdown())
     return merge_metrics
 
 
@@ -236,6 +243,7 @@ if __name__ == "__main__":
     parser.add_argument("--debug", action="store_true")
     parser.add_argument("--eval", type=str, nargs='+', default=["svg"], help="List of evaluation tasks", choices=["svg", "cad", "mnist", "inv"])
     parser.add_argument("--model", type=str, default="meta-llama/Meta-Llama-3.1-8B-Instruct")
+    parser.add_argument("--max_tokens", type=int, default=2048)
     args = parser.parse_args()
 
     main(args)

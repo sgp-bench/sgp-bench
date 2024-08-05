@@ -77,7 +77,7 @@ def calculate_average_accuracy(modes, model):
     print(f"Average accuracy: {avg_acc:.3f}")
 
 
-model = 'DeepSeek-Coder-V2-16B'
+model = 'Meta-Llama-3.1-405B-Instruct-FP8'
 modes = ['inv', 'inv_t0', 'inv_t1', 'inv_t2', 'inv_t3', 'inv_t4']
 print('translation consistency for', model)
 calculate_average_accuracy(modes, model)

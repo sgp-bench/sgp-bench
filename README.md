@@ -73,6 +73,9 @@ python -m vllm.entrypoints.openai.api_server --model meta-llama/Meta-Llama-3.1-8
 # llama3.1-70B
 python -m vllm.entrypoints.openai.api_server --model meta-llama/Meta-Llama-3.1-70B-Instruct --dtype auto --api-key token-abc123 --tensor-parallel-size 8
 
+# llama3.1-405B
+python -m vllm.entrypoints.openai.api_server --model meta-llama/Meta-Llama-3.1-405B-Instruct-FP8 --dtype auto --api-key token-abc123 --tensor-parallel-size 8 --max-model-len 8192
+
 
 
 # gemma-1.1-2b
@@ -100,6 +103,15 @@ python -m vllm.entrypoints.openai.api_server --model mistralai/Mistral-Nemo-Inst
 
 # c4ai-command-r-v01
 python -m vllm.entrypoints.openai.api_server --model CohereForAI/c4ai-command-r-v01 --dtype auto --api-key token-abc123 --tensor-parallel-size 8
+
+# c4ai-command-r-plus
+python -m vllm.entrypoints.openai.api_server --model CohereForAI/c4ai-command-r-plus --dtype auto --api-key token-abc123 --tensor-parallel-size 8
+
+# CohereForAI/aya-23-8B
+python -m vllm.entrypoints.openai.api_server --model CohereForAI/aya-23-8B --dtype auto --api-key token-abc123 --tensor-parallel-size 8 
+
+# CohereForAI/aya-23-35B
+python -m vllm.entrypoints.openai.api_server --model CohereForAI/aya-23-35B --dtype auto --api-key token-abc123 --tensor-parallel-size 8
 
 
 
