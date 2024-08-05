@@ -43,22 +43,16 @@ The evaluation script loads the merged model, runs it on the evaluation dataset,
    to extract the `prompt conversation` (spg-bench question without code), `sampled message` (model response) and `result` (gt result) and save the parsed information in a `*_query.json` file.
 
 2. **Extract answer using a LLM**:
-   Run the `result
-   ```bash
-   python extract_answer.py --result_file *_query.json
-   ```
-
+   Run the `extract_answer.py` script to perform LLM-based evaluation.
    ```bash
    python extract_answer.py --result_file $QUERY_FILE --llm_engine $LLM_ENGINE --base_url $BASE_URL
 
-   # example
-   python extract_answer.py --result_file *_query.json --llm_engine meta-llama/Meta-Llama-3.1-8B-Instruct --base_url 
+   # example of using open-sourced LLM
+   python extract_answer.py --result_file *_query.json --llm_engine meta-llama/Meta-Llama-3.1-8B-Instruct --base_url http://172.22.2.134:8000/v1
+
+   # example of using GPT
+   python extract_answer.py --result_file *_query.json --llm_engine gpt-4o-mini-2024-07-18
    ```
-
-### Example Script
-
-Here's an example of how to run the evaluation:
-
 
 
 ## Acknowledgment
