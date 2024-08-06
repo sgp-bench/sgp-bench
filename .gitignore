@@ -1,5 +1,7 @@
 results
 
+data/
+
 __pycache__/
 
 train/checkpoints/

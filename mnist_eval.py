@@ -15,6 +15,8 @@ from . import common
 from .common import ANSWER_PATTERN, HTML_JINJA, check_equality
 from .custom_types import Eval, EvalResult, SamplerBase, SingleEvalResult
 
+from datasets import load_dataset
+
 QUERY_TEMPLATE = """
 Solve the following problem step by step. The last line of your response should be of the form Answer: $ANSWER (without quotes) where $ANSWER is the answer to the problem.
 
@@ -26,12 +28,9 @@ Important, put your answer on its own line after "Answer:", and you do not need 
 
 class MNISTEval(Eval):
     def __init__(self, equality_checker: SamplerBase, num_examples: int | None = None, mode: str = "mnist", api: str = "default"):
-        csv_path = os.path.join(os.path.dirname(__file__), "data", f"sgp_{mode}_testset.csv")
-        df = pandas.read_csv(
-            # bf.BlobFile("https://openaipublic.blob.core.windows.net/simple-evals/math_test.csv")
-            csv_path
-        )
-        examples = [row.to_dict() for _, row in df.iterrows()]
+        dataset = load_dataset('sgp-bench/sgp-mnist', split=mode)
+        examples = [item for item in dataset]
+
         if num_examples:
             examples = random.Random(0).sample(examples, num_examples)
         self.examples = examples

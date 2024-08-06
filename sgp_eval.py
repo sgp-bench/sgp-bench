@@ -14,15 +14,15 @@ from . import common
 from .common import ANSWER_PATTERN_MULTICHOICE, HTML_JINJA, format_multichoice_question
 from .custom_types import Eval, EvalResult, SamplerBase, SingleEvalResult
 
+from datasets import load_dataset
+
 
 
 class SGPEval(Eval):
-    def __init__(self, num_examples: int | None = None, mode: str = "raw", api: str = "default"):
-        csv_path = os.path.join(os.path.dirname(__file__), "data", "sgp_{}_testset.csv".format(mode))
-        df = pandas.read_csv(
-            csv_path
-        )
-        examples = [row.to_dict() for _, row in df.iterrows()]
+    def __init__(self, num_examples: int | None = None, mode: str = "raw", api: str = "default"):        
+        dataset = load_dataset('sgp-bench/sgp-bench', split=mode)
+        examples = [item for item in dataset]
+
         if num_examples:
             examples = random.Random(0).sample(examples, num_examples)
         self.examples = examples

@@ -14,6 +14,23 @@ Project Link: [https://sgp-bench.github.io](https://sgp-bench.github.io)
 - [Contact](#contact)
 
 
+## Data
+
+The data used for evaluation or instruction tuning will be automatically downloaded by running `load_dataset` from huggingface datasets.
+
+```python
+load_dataset('sgp-bench/sgp-bench', split=split)
+load_dataset('sgp-bench/sgp-mnist', split='mnist')
+load_dataset('sgp-bench/sit_10k')
+load_dataset('sgp-bench/sit_25k')
+load_dataset('sgp-bench/sit_40k')
+load_dataset('sgp-bench/sit_55k')
+```
+
+We also provide the data as `csv` files in the following [link
+](https://drive.google.com/drive/folders/1yZA7SKVCscai1tY_Zpoy4XgdR27Rddg1?hl=de).
+
+
 ## Installation
 
 Run the following command to set up the conda environment.
