@@ -25,7 +25,7 @@ from trl import SFTTrainer, SFTConfig
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_path", type=str, default="meta-llama/Meta-Llama-3-8B-Instruct")
-    parser.add_argument("--data_file", type=str, default="alpaca.json", required=True)
+    parser.add_argument("--dataset_name", type=str, default="sgp-bench/sit_10k")
     parser.add_argument("--subset", type=str, default="data/finetune")
     parser.add_argument("--split", type=str, default="train")
     parser.add_argument("--size_valid_set", type=int, default=4000)
@@ -100,7 +100,7 @@ def create_datasets(tokenizer, args):
         return { "text" : texts, }
     pass
 
-    train_dataset = load_dataset("json", data_files = args.data_file, split = "train")
+    train_dataset = load_dataset(args.dataset_name, split = "train")
     train_dataset = train_dataset.map(formatting_prompts_func, batched = True,)
 
     return train_dataset
@@ -173,7 +173,7 @@ if __name__ == "__main__":
     args = get_args()
 
     set_seed(args.seed)
-    run_name = args.data_file.split(".")[0]
+    run_name = args.dataset_name.split("/")[-1]
     args.output_dir = os.path.join(args.output_dir, f"lora-llama3.1-8B-{args.lora_r}", run_name)
     os.makedirs(args.output_dir, exist_ok=True)
     print(f"Saving checkpoints in {args.output_dir}")

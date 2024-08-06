@@ -10,11 +10,12 @@ Some additional python packages has to be installed before performing evaluation
 ```bash
 pip install trl
 pip install peft
+pip install accelerate
 ```
 
 ## Data
 
-You can download the symbolic instruction tuning dataset from [SIT Data](https://drive.google.com/drive/folders/1yZA7SKVCscai1tY_Zpoy4XgdR27Rddg1). Place the downloaded dataset json files in the `data` directory.
+You can download the symbolic instruction tuning dataset from the huggingface dataset [SIT Data](https://huggingface.co/sgp-bench).
 
 
 ## Symbolic Instruction Tuning

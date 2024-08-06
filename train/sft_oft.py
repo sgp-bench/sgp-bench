@@ -26,8 +26,7 @@ from trl.trainer import ConstantLengthDataset
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_path", type=str, default="meta-llama/Meta-Llama-3.1-8B-Instruct")
-    parser.add_argument("--dataset_name", type=str, default="lvwerra/stack-exchange-paired")
-    parser.add_argument("--data_file", type=str, default="alpaca.json", required=True)
+    parser.add_argument("--dataset_name", type=str, default="sgp-bench/sit_10k")
     parser.add_argument("--subset", type=str, default="data/finetune")
     parser.add_argument("--split", type=str, default="train")
     parser.add_argument("--size_valid_set", type=int, default=4000)
@@ -112,7 +111,7 @@ def create_datasets(tokenizer, args):
 def run_training(args, train_data):
     print("Loading the model")
 
-    lora_config = BOFTConfig(
+    oft_config = BOFTConfig(
         boft_block_size=args.block_size, # 32
         boft_n_butterfly_factor=args.n_butterfly_factor, # 1
         boft_dropout=0.05,
@@ -152,16 +151,13 @@ def run_training(args, train_data):
 
     model = AutoModelForCausalLM.from_pretrained(
         args.model_path, 
-        # device_map="auto",
-        # load_in_8bit=True, 
-        # device_map={"": Accelerator().process_index}
     )
 
     trainer = SFTTrainer(
         model=model,
         args=training_args,
         train_dataset=train_data,
-        peft_config=lora_config,
+        peft_config=oft_config,
         packing=False,
     )
 
@@ -179,7 +175,7 @@ if __name__ == "__main__":
     args = get_args()
 
     set_seed(args.seed)
-    run_name = args.data_file.split(".")[0]
+    run_name = args.dataset_name.split("/")[-1]
     args.output_dir = os.path.join(args.output_dir, f"oft-llama3.1-8B-{args.block_size}-{args.n_butterfly_factor}", run_name)
     os.makedirs(args.output_dir, exist_ok=True)
     print(f"Saving checkpoints in {args.output_dir}")

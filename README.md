@@ -2,6 +2,8 @@
 
 Here is the official evaluation code of SGP-Bench (Paper: Can Large Language Models Understand Symbolic Graphics Programs?)
 
+Project Link: [https://sgp-bench.github.io](https://sgp-bench.github.io)
+
 ## Table of Contents
 
 - [Installation](#installation)
@@ -170,9 +172,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-Zeju Qiu - [your-email@example.com](mailto:your-email@example.com)
-
-Project Link: [https://github.com/your-username/your-repo](https://github.com/your-username/your-repo)
+Zeju Qiu - [zeju.qiu@gmal.com](mailto:your-email@example.com)
 
 ## Acknowledgements
 
