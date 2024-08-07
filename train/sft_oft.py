@@ -102,7 +102,7 @@ def create_datasets(tokenizer, args):
         return { "text" : texts, }
     pass
 
-    train_dataset = load_dataset("json", data_files = args.data_file, split = "train")
+    train_dataset = load_dataset(args.dataset_name, split = "train")
     train_dataset = train_dataset.map(formatting_prompts_func, batched = True,)
 
     return train_dataset
