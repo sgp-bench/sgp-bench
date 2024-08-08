@@ -191,7 +191,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-Zeju Qiu - [zeju.qiu@gmal.com](mailto:your-email@example.com)
+Zeju Qiu - [zeju.qiu@gmail.com](mailto:zeju.qiu@gmail.com)
 
 ## Acknowledgements
 

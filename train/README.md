@@ -11,6 +11,7 @@ Some additional python packages has to be installed before performing evaluation
 pip install trl
 pip install peft
 pip install accelerate
+pip install transformers==4.44.0
 ```
 
 ## Data
