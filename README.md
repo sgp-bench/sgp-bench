@@ -5,6 +5,7 @@ Here is the official evaluation code of SGP-Bench (Paper: Can Large Language Mod
 ![Teaser Image](assets/teaser_sgp.png)
 
 Project Link: [https://sgp-bench.github.io](https://sgp-bench.github.io)
+
 Paper Link:  [https://arxiv.org/abs/2408.08313](https://arxiv.org/abs/2408.08313) 
 
 ## Table of Contents
