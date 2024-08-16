@@ -19,12 +19,25 @@ Project Link: [https://sgp-bench.github.io](https://sgp-bench.github.io)
 The data used for evaluation or instruction tuning will be automatically downloaded by running `load_dataset` from huggingface datasets.
 
 ```python
+# SGP-Bench
 load_dataset('sgp-bench/sgp-bench', split=split)
 load_dataset('sgp-bench/sgp-mnist', split='mnist')
+# SIT data
 load_dataset('sgp-bench/sit_10k')
 load_dataset('sgp-bench/sit_25k')
 load_dataset('sgp-bench/sit_40k')
 load_dataset('sgp-bench/sit_55k')
+load_dataset('sgp-bench/sit_72k')
+load_dataset('sgp-bench/rev_sit_10k')
+load_dataset('sgp-bench/rev_sit_25k')
+load_dataset('sgp-bench/rev_sit_40k')
+load_dataset('sgp-bench/rev_sit_55k')
+load_dataset('sgp-bench/rev_sit_72k')
+load_dataset('sgp-bench/mixed_sit_10k')
+load_dataset('sgp-bench/mixed_sit_25k')
+load_dataset('sgp-bench/mixed_sit_40k')
+load_dataset('sgp-bench/mixed_sit_55k')
+load_dataset('sgp-bench/mixed_sit_72k')
 ```
 
 We also provide the data as `csv` files in the following [link
@@ -192,6 +205,22 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Contact
 
 Zeju Qiu - [zeju.qiu@gmail.com](mailto:zeju.qiu@gmail.com)
+
+## Citation
+
+If you find our project interesting, please cite us 😊
+
+```bibtex
+@misc{qiu2024largelanguagemodelsunderstand,
+  title={Can Large Language Models Understand Symbolic Graphics Programs?},
+  author={Zeju Qiu and Weiyang Liu and Haiwen Feng and Zhen Liu and Tim Z. Xiao and Katherine M. Collins and Joshua B. Tenenbaum and Adrian Weller and Michael J. Black and Bernhard Schölkopf},
+  year={2024},
+  eprint={2408.08313},
+  archivePrefix={arXiv},
+  primaryClass={cs.LG},
+  url={https://arxiv.org/abs/2408.08313},
+}
+```
 
 ## Acknowledgements
 
