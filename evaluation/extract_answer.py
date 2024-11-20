@@ -70,7 +70,7 @@ if __name__ == '__main__':
 
     # read results
     print(f"Reading {args.result_file}...")
-    results_list = read_json(args.result_file)
+    results_list = read_json(os.path.join(os.args.output_dir, args.result_file))
     results = np.array(results_list).reshape(-1, 3)
 
     all_acc = []
