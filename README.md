@@ -1,6 +1,8 @@
 # SGP-Bench
 
-Here is the official evaluation code of SGP-Bench (Paper: Can Large Language Models Understand Symbolic Graphics Programs?)
+Here is the official evaluation code of SGP-Bench.
+
+🎉 We are happy to announce that our paper **Can Large Language Models Understand Symbolic Graphics Programs?** has been selected as **spotlight** at **ICLR 2025**. 🎉
 
 ![Teaser Image](assets/teaser_sgp.png)
 
