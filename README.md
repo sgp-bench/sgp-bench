@@ -215,15 +215,12 @@ Zeju Qiu - [zeju.qiu@gmail.com](mailto:zeju.qiu@gmail.com)
 If you find our project interesting, please cite us 😊
 
 ```bibtex
-@misc{qiu2024largelanguagemodelsunderstand,
-  title={Can Large Language Models Understand Symbolic Graphics Programs?},
-  author={Zeju Qiu and Weiyang Liu and Haiwen Feng and Zhen Liu and Tim Z. Xiao and Katherine M. Collins and Joshua B. Tenenbaum and Adrian Weller and Michael J. Black and Bernhard Schölkopf},
-  year={2024},
-  eprint={2408.08313},
-  archivePrefix={arXiv},
-  primaryClass={cs.LG},
-  url={https://arxiv.org/abs/2408.08313},
-}
+ @article{qiu2024can, 
+        title={Can Large Language Models Understand Symbolic Graphics Programs?}, 
+        author={Qiu, Zeju and Liu, Weiyang and Feng, Haiwen and Liu, Zhen and Xiao, Tim Z and Collins, Katherine M and Tenenbaum, Joshua B and Weller, Adrian and Black, Michael J and Sch{\"o}lkopf, Bernhard}, 
+        journal={arXiv preprint arXiv:2408.08313}, 
+        year={2024} 
+      }
 ```
 
 ## Acknowledgements
